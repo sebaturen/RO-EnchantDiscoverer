@@ -16,10 +16,10 @@ public class ItemEnchantProperty {
         enc.put(6L, "Int +%d");
         enc.put(7L, "Dex +%d");
         enc.put(8L, "Luk +%d");
-        // 9
-        // 10
-        // 11
-        // 12
+        enc.put(9L, "Max HP +%d%%");
+        enc.put(10L, "Max SP +%d%%");
+        enc.put(11L, "HP Recovery +%d%%");
+        enc.put(12L, "SP Recovery +%d%%");
         enc.put(13L, "Atk +%d%%");
         // 14
         enc.put(15L, "Aspd +%d");
@@ -27,14 +27,22 @@ public class ItemEnchantProperty {
         enc.put(17L, "Atk +%d");
         enc.put(18L, "Hit +%d");
         enc.put(19L, "Matk +%d");
-        // 20
-        // 21
+        enc.put(20L, "Def +%d");
+        enc.put(21L, "Mdef +%d");
         enc.put(22L, "Flee +%d");
         // 23
         enc.put(24L, "Crit +%d");
-        // 25 - 28
+        enc.put(25L, "Neutral Property Resistance +%d%%");
+        // 26
+        enc.put(27L, "Earth Property Resistance +%d%%");
+        enc.put(28L, "Fire Property Resistance +%d%%");
         enc.put(29L, "Wind Property Resistance +%d%%");
-        // 36
+        enc.put(30L, "Poison Property Resistance +%d%%");
+        enc.put(31L, "Holy Property Resistance +%d%%");
+        enc.put(32L, "Shadow Property Resistance +%d%%");
+        enc.put(33L, "Ghost Property Resistance +%d%%");
+        enc.put(34L, "Undead Property Resistance +%d%%");
+        // 35-36
         enc.put(37L, "Damage to Neutral Enemies +%d%%");
         //38
         enc.put(39L, "Damage to Water Enemies +%d%%");
@@ -71,7 +79,7 @@ public class ItemEnchantProperty {
         // 70
         enc.put(71L, "Magic Damage to Shadow Enemies +%d%%");
         // 72
-        // 73
+        enc.put(73L, "Magic Damage to Ghost Enemies +%d%%");
         // 74
         enc.put(75L, "Undead Property Enemy +%d%%");
         // 76 - 96
@@ -89,10 +97,10 @@ public class ItemEnchantProperty {
         enc.put(108L, "Magic Damage to Undead Race Enemies +%d%%");
         // 109
         enc.put(110L, "Magic Damage to Plant Race Enemies +%d%%");
-        // 111
+        enc.put(111L, "Magic Damage to Insect Enemies +%d%%");
         enc.put(112L, "Magic Damage to Fish Enemies +%d%%");
         enc.put(113L, "Magic Damage to Demon Enemies +%d%%");
-        // 114
+        enc.put(114L, "Magic Damage to Demi-Human Enemies +%d%%");
         enc.put(115L, "Magic Damage to Angel Enemies +%d%%");
         enc.put(116L, "Magic Damage to Dragon Enemies +%d%%");
         // 117 - 163
@@ -100,7 +108,8 @@ public class ItemEnchantProperty {
         enc.put(166L, "Long-Ranged Damage +%d%%");
         enc.put(168L, "Skill Healing Recovery Rate +%d%%");
         enc.put(170L, "Variable Caste Time -%d%%");
-
+        // 171
+        // 172
 
         enchants = enc;
     }
