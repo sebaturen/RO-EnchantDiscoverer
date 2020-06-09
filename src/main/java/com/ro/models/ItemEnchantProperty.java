@@ -1,123 +1,208 @@
 package com.ro.models;
 
+import com.ro.enums.ItemOptions;
+
 import java.util.HashMap;
 import java.util.Map;
 
+// Reference: https://github.com/OpenKore/openkore/blob/master/tables/iRO/Transcendence/item_options.txt
 public class ItemEnchantProperty {
 
-    private static final Map<Long, String> enchants;
+    private static final Map<ItemOptions, String> enchants;
     static {
-        Map<Long, String> enc = new HashMap<>();
-        enc.put(1L, "Max HP +%d");
-        enc.put(2L, "Max SP +%d");
-        enc.put(3L, "Str +%d");
-        enc.put(4L, "Agi +%d");
-        enc.put(5L, "Vit +%d");
-        enc.put(6L, "Int +%d");
-        enc.put(7L, "Dex +%d");
-        enc.put(8L, "Luk +%d");
-        enc.put(9L, "Max HP +%d%%");
-        enc.put(10L, "Max SP +%d%%");
-        enc.put(11L, "HP Recovery +%d%%");
-        enc.put(12L, "SP Recovery +%d%%");
-        enc.put(13L, "Atk +%d%%");
-        // 14
-        enc.put(15L, "Aspd +%d");
-        // 16
-        enc.put(17L, "Atk +%d");
-        enc.put(18L, "Hit +%d");
-        enc.put(19L, "Matk +%d");
-        enc.put(20L, "Def +%d");
-        enc.put(21L, "Mdef +%d");
-        enc.put(22L, "Flee +%d");
-        // 23
-        enc.put(24L, "Crit +%d");
-        enc.put(25L, "Neutral Property Resistance +%d%%");
-        // 26
-        enc.put(27L, "Earth Property Resistance +%d%%");
-        enc.put(28L, "Fire Property Resistance +%d%%");
-        enc.put(29L, "Wind Property Resistance +%d%%");
-        enc.put(30L, "Poison Property Resistance +%d%%");
-        enc.put(31L, "Holy Property Resistance +%d%%");
-        enc.put(32L, "Shadow Property Resistance +%d%%");
-        enc.put(33L, "Ghost Property Resistance +%d%%");
-        enc.put(34L, "Undead Property Resistance +%d%%");
-        // 35-36
-        enc.put(37L, "Damage to Neutral Enemies +%d%%");
-        //38
-        enc.put(39L, "Damage to Water Enemies +%d%%");
-        // 40
-        enc.put(41L, "Damage to Earth Enemies +%d%%");
-        // 42
-        enc.put(43L, "Damage to Fire Enemies +%d%%");
-        // 44
-        enc.put(45L, "Damage to Wind Enemies +%d%%");
-        // 46
-        enc.put(47L, "Damage to Poison Enemies +%d%%");
-        // 48
-        enc.put(49L, "Damage to Holy Enemies +%d%%");
-        // 50
-        enc.put(51L, "Damage to Shadow Enemies +%d%%");
-        // 52
-        enc.put(53L, "Damage to Ghost Enemies +%d%%");
-        // 54
-        enc.put(55L, "Damage to Undead Property Enemies +%d%%");
-        // 56
-        enc.put(57L, "Magic Damage to Neutral Enemies +%d%%");
-        // 58
-        enc.put(59L, "Magic Damage to Water Enemies +%d%%");
-        // 60
-        enc.put(61L, "Magic Damage to Earth Enemies +%d%%");
-        // 62
-        enc.put(63L, "Magic Damage to Fire Enemies +%d%%");
-        // 64
-        enc.put(65L, "Magic Damage to Wind Enemies +%d%%");
-        // 66
-        enc.put(67L, "Magic Damage to Poison Enemies +%d%%");
-        // 68
-        enc.put(69L, "Magic Damage to Holy Enemies +%d%%");
-        // 70
-        enc.put(71L, "Magic Damage to Shadow Enemies +%d%%");
-        // 72
-        enc.put(73L, "Magic Damage to Ghost Enemies +%d%%");
-        // 74
-        enc.put(75L, "Undead Property Enemy +%d%%");
-        // 76 - 96
-        enc.put(97L, "Damage to Formless Enemies +%d%%");
-        enc.put(98L, "Damage to Undead Race Enemies +%d%%");
-        enc.put(99L, "Damage to Brute Enemies +%d%%");
-        enc.put(100L, "Damage to Plant Enemies +%d%%");
-        enc.put(101L, "Damage to Insect Enemies +%d%%");
-        enc.put(102L, "Damage to Fish Enemies +%d%%");
-        enc.put(103L, "Damage to Demon Enemies +%d%%");
-        enc.put(104L, "Damage to Demi-Human Enemies +%d%%");
-        enc.put(105L, "Damage to Angel Enemies +%d%%");
-        enc.put(106L, "Damage to Dragon Enemies +%d%%");
-        enc.put(107L, "Magic Damage to Formless Enemies +%d%%");
-        enc.put(108L, "Magic Damage to Undead Race Enemies +%d%%");
-        // 109
-        enc.put(110L, "Magic Damage to Plant Race Enemies +%d%%");
-        enc.put(111L, "Magic Damage to Insect Enemies +%d%%");
-        enc.put(112L, "Magic Damage to Fish Enemies +%d%%");
-        enc.put(113L, "Magic Damage to Demon Enemies +%d%%");
-        enc.put(114L, "Magic Damage to Demi-Human Enemies +%d%%");
-        enc.put(115L, "Magic Damage to Angel Enemies +%d%%");
-        enc.put(116L, "Magic Damage to Dragon Enemies +%d%%");
-        // 117 - 163
-        enc.put(164L, "Critical Damage +%d%%");
-        enc.put(166L, "Long-Ranged Damage +%d%%");
-        enc.put(168L, "Skill Healing Recovery Rate +%d%%");
-        enc.put(170L, "Variable Caste Time -%d%%");
-        // 171
-        // 172
+        Map<ItemOptions, String> enc = new HashMap<>();
+        enc.put(ItemOptions.UNKNOWN, "Unknown %d");
+        enc.put(ItemOptions.VAR_MAXHPAMOUNT, "Max HP + %d");
+        enc.put(ItemOptions.VAR_MAXSPAMOUNT, "Max SP + %d");
+        enc.put(ItemOptions.VAR_STRAMOUNT, "Str + %d");
+        enc.put(ItemOptions.VAR_AGIAMOUNT, "Agi + %d");
+        enc.put(ItemOptions.VAR_VITAMOUNT, "Vit + %d");
+        enc.put(ItemOptions.VAR_INTAMOUNT, "Int + %d");
+        enc.put(ItemOptions.VAR_DEXAMOUNT, "Dex + %d");
+        enc.put(ItemOptions.VAR_LUKAMOUNT, "Luk + %d");
+        enc.put(ItemOptions.VAR_MAXHPPERCENT, "Max HP + %d%%");
+        enc.put(ItemOptions.VAR_MAXSPPERCENT, "Max SP + %d%%");
+        enc.put(ItemOptions.VAR_HPACCELERATION, "HP Recovery + %d%%");
+        enc.put(ItemOptions.VAR_SPACCELERATION, "SP Recovery + %d%%");
+        enc.put(ItemOptions.VAR_ATKPERCENT, "Atk + %d%%");
+        enc.put(ItemOptions.VAR_MAGICATKPERCENT, "Matk + %d%%");
+        enc.put(ItemOptions.VAR_PLUSASPD, "Aspd + %d");
+        enc.put(ItemOptions.VAR_PLUSASPDPERCENT, "Aspd + %d%%");
+        enc.put(ItemOptions.VAR_ATTPOWER, "Atk + %d");
+        enc.put(ItemOptions.VAR_HITSUCCESSVALUE, "Hit + %d");
+        enc.put(ItemOptions.VAR_ATTMPOWER, "Matk + %d");
+        enc.put(ItemOptions.VAR_ITEMDEFPOWER, "Def + %d");
+        enc.put(ItemOptions.VAR_MDEFPOWER, "Mdef + %d");
+        enc.put(ItemOptions.VAR_AVOIDSUCCESSVALUE, "Flee + %d");
+        enc.put(ItemOptions.VAR_PLUSAVOIDSUCCESSVALUE, "Perfect Dodge + %d");
+        enc.put(ItemOptions.VAR_CRITICALSUCCESSVALUE, "Crit + %d");
+        enc.put(ItemOptions.ATTR_TOLERACE_NOTHING, "Neutral Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_WATER, "Water Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_GROUND, "Earth Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_FIRE, "Fire Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_WIND, "Wind Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_POISON, "Poison Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_SAINT, "Holy Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_DARKNESS, "Shadow Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_TELEKINESIS, "Ghost Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_UNDEAD, "Undead Property Resistance +%d%%.");
+        enc.put(ItemOptions.ATTR_TOLERACE_ALL, "All Property Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_NOTHING_USER, "Neutral Enemies Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_NOTHING_TARGET, "Damage to Neutral Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_WATER_USER, "Water Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_WATER_TARGET, "Damage to Water Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_GROUND_USER, "Earth Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_GROUND_TARGET, "Damage to Earth Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_FIRE_USER, "Fire Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_FIRE_TARGET, "Damage to Fire Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_WIND_USER, "Wind Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_WIND_TARGET, "Damage to Wind Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_POISON_USER, "Poison Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_POISON_TARGET, "Damage to Poison Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_SAINT_USER, "Holy Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_SAINT_TARGET, "Damage to Holy Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_DARKNESS_USER, "Shadow Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_DARKNESS_TARGET, "Damage to Shadow Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_TELEKINESIS_USER, "Ghost Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_TELEKINESIS_TARGET, "Damage to Ghost Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_UNDEAD_USER, "Undead Property Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_PROPERTY_UNDEAD_TARGET, "Damage to Undead Property Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_NOTHING_USER, "Neutral Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_NOTHING_TARGET, "Magic Damage to Neutral Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_WATER_USER, "Water Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_WATER_TARGET, "Magic Damage to Water Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_GROUND_USER, "Earth Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_GROUND_TARGET, "Magic Damage to Earth Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_FIRE_USER, "Fire Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_FIRE_TARGET, "Magic Damage to Fire Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_WIND_USER, "Wind Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_WIND_TARGET, "Magic Damage to Wind Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_POISON_USER, "Poison Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_POISON_TARGET, "Magic Damage to Poison Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_SAINT_USER, "Holy Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_SAINT_TARGET, "Magic Damage to Holy Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_DARKNESS_USER, "Shadow Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_DARKNESS_TARGET, "Magic Damage to Shadow Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_TELEKINESIS_USER, "Ghost Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_TELEKINESIS_TARGET, "Magic Damage to Ghost Enemies +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_UNDEAD_USER, "Undead Property Enemy Magic Resistance +%d%%.");
+        enc.put(ItemOptions.MDAMAGE_PROPERTY_UNDEAD_TARGET, "Undead Property Enemy +%d%%.");
+        enc.put(ItemOptions.BODY_ATTR_WATER, "User's Property Water.");
+        enc.put(ItemOptions.BODY_ATTR_GROUND, "User's Property Earth.");
+        enc.put(ItemOptions.BODY_ATTR_FIRE, "User's Property Fire.");
+        enc.put(ItemOptions.BODY_ATTR_WIND, "User's Property Wind.");
+        enc.put(ItemOptions.BODY_ATTR_POISON, "User's Property Poison.");
+        enc.put(ItemOptions.BODY_ATTR_SAINT, "User's Property Holy.");
+        enc.put(ItemOptions.BODY_ATTR_DARKNESS, "User's Property Shadow.");
+        enc.put(ItemOptions.BODY_ATTR_TELEKINESIS, "User's Property Ghost.");
+        enc.put(ItemOptions.BODY_ATTR_UNDEAD, "User's Property Undead.");
+        enc.put(ItemOptions.RACE_TOLERACE_NOTHING, "Formless Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_TOLERACE_UNDEAD, "Undead Race Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_TOLERACE_ANIMAL, "Brute Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_TOLERACE_PLANT, "Plant Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_TOLERACE_INSECT, "Insect Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_TOLERACE_FISHS, "Fish Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_TOLERACE_DEVIL, "Demon Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_TOLERACE_HUMAN, "Demi-Human Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_TOLERACE_ANGEL, "Angel Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_TOLERACE_DRAGON, "Dragon Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_NOTHING, "Damage to Formless Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_UNDEAD, "Damage to Undead Race Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_ANIMAL, "Damage to Brute Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_PLANT, "Damage to Plant Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_INSECT, "Damage to Insect Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_FISHS, "Damage to Fish Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_DEVIL, "Damage to Demon Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_HUMAN, "Damage to Demi-Human Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_ANGEL, "Damage to Angel Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_DAMAGE_DRAGON, "Damage to Dragon Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_NOTHING, "Magic Damage to Formless Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_UNDEAD, "Magic Damage to Undead Race Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_ANIMAL, "Magic Damage to Brute Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_PLANT, "Magic Damage to Plant Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_INSECT, "Magic Damage to Insect Enemy +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_FISHS, "Magic Damage to Fish Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_DEVIL, "Magic Damage to Demon Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_HUMAN, "Magic Damage to Demi-Human Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_ANGEL, "Magic Damage to Angel Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_MDAMAGE_DRAGON, "Magic Damage to Dragon Enemies +%d%%.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_NOTHING, "Crit + (%d / 10) on Formless Enemies.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_UNDEAD, "Crit + (%d / 10) on Undead Race Enemies.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_ANIMAL, "Crit + (%d / 10) on Brute Enemies.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_PLANT, "Crit + (%d / 10) on Plant Enemies.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_INSECT, "Crit + (%d / 10) on Insect Enemies.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_FISHS, "Crit + (%d / 10) on Fish Enemies.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_DEVIL, "Crit + (%d / 10) on Demon Enemies.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_HUMAN, "Crit + (%d / 10) on Demi-Human Enemies.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_ANGEL, "Crit + (%d / 10) on Angel Enemies.");
+        enc.put(ItemOptions.RACE_CRI_PERCENT_DRAGON, "Crit + (%d / 10) on Dragon Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_NOTHING, "Bypass %d%% of Def on Formless Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_UNDEAD, "Bypass %d%% of Def on Undead Race Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_ANIMAL, "Bypass %d%% of Def on Brute Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_PLANT, "Bypass %d%% of Def on Plant Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_INSECT, "Bypass %d%% of Def on Insect Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_FISHS, "Bypass %d%% of Def on Fish Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_DEVIL, "Bypass %d%% of Def on Demon Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_HUMAN, "Bypass %d%% of Def on Demi-Human Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_ANGEL, "Bypass %d%% of Def on Angel Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_DEF_PERCENT_DRAGON, "Bypass %d%% of Def on Dragon Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_NOTHING, "Bypass %d%% of Mdef on Formless Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_UNDEAD, "Bypass %d%% of Mdef on Undead Race Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_ANIMAL, "Bypass %d%% of Mdef on Brute Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_PLANT, "Bypass %d%% of Mdef on Plant Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_INSECT, "Bypass %d%% of Mdef on Insect Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_FISHS, "Bypass %d%% of Mdef on Fish Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_DEVIL, "Bypass %d%% of Mdef on Demon Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_HUMAN, "Bypass %d%% of Mdef on Demi-Human Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_ANGEL, "Bypass %d%% of Mdef on Angel Enemies.");
+        enc.put(ItemOptions.RACE_IGNORE_MDEF_PERCENT_DRAGON, "Bypass %d%% of Mdef on Dragon Enemies.");
+        enc.put(ItemOptions.CLASS_DAMAGE_NORMAL_TARGET, "Damage to Normal Enemies +%d%%.");
+        enc.put(ItemOptions.CLASS_DAMAGE_BOSS_TARGET, "Damage to Damage to Boss Enemies +%d%%.");
+        enc.put(ItemOptions.CLASS_DAMAGE_NORMAL_USER, "Normal Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.CLASS_DAMAGE_BOSS_USER, "Boss Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.CLASS_MDAMAGE_NORMAL, "Magic Damage to Normal Enemies +%d%%.");
+        enc.put(ItemOptions.CLASS_MDAMAGE_BOSS, "Magic Damage to Boss Enemies +%d%%.");
+        enc.put(ItemOptions.CLASS_IGNORE_DEF_PERCENT_NORMAL, "Bypass %d%% of Def on Normal Enemies.");
+        enc.put(ItemOptions.CLASS_IGNORE_DEF_PERCENT_BOSS, "Bypass %d%% of Def on Boss Enemies.");
+        enc.put(ItemOptions.CLASS_IGNORE_MDEF_PERCENT_NORMAL, "Bypass %d%% of Mdef on Normal Enemies.");
+        enc.put(ItemOptions.CLASS_IGNORE_MDEF_PERCENT_BOSS, "Bypass %d%% of Mdef on Boss Enemies.");
+        enc.put(ItemOptions.DAMAGE_SIZE_SMALL_TARGET, "Damage to Small Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_SIZE_MIDIUM_TARGET, "Damage to Medium Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_SIZE_LARGE_TARGET, "Damage to Large Enemies +%d%%.");
+        enc.put(ItemOptions.DAMAGE_SIZE_SMALL_USER, "Small Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_SIZE_MIDIUM_USER, "Medium Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_SIZE_LARGE_USER, "Large Enemy Resistance +%d%%.");
+        enc.put(ItemOptions.DAMAGE_SIZE_PERFECT, "Recovers 100% of damage lost from size penalties.");
+        enc.put(ItemOptions.DAMAGE_CRI_TARGET, "Critical Damage +%d%%.");
+        enc.put(ItemOptions.DAMAGE_CRI_USER, "Critical Resistance +%d%%.");
+        enc.put(ItemOptions.RANGE_ATTACK_DAMAGE_TARGET, "Long-Ranged Damage +%d%%.");
+        enc.put(ItemOptions.RANGE_ATTACK_DAMAGE_USER, "Long-Ranged Resistance +%d%%.");
+        enc.put(ItemOptions.HEAL_VALUE, "Skill Healing Recovery Rate +%d%%.");
+        enc.put(ItemOptions.HEAL_MODIFY_PERCENT, "Received Recovery Rate +%d%%.");
+        enc.put(ItemOptions.DEC_SPELL_CAST_TIME, "Variable Casting Time -%d%%");
+        enc.put(ItemOptions.DEC_SPELL_DELAY_TIME, "Cast Delay -%d%%.");
+        enc.put(ItemOptions.DEC_SP_CONSUMPTION, "Skill SP Cost -%d%%.");
+        enc.put(ItemOptions.WEAPON_ATTR_NOTHING, "Property: Neutral");
+        enc.put(ItemOptions.WEAPON_ATTR_WATER, "Property: Water");
+        enc.put(ItemOptions.WEAPON_ATTR_GROUND, "Property: Earth");
+        enc.put(ItemOptions.WEAPON_ATTR_FIRE, "Property: Fire");
+        enc.put(ItemOptions.WEAPON_ATTR_WIND, "Property: Wind");
+        enc.put(ItemOptions.WEAPON_ATTR_POISON, "Property: Poison");
+        enc.put(ItemOptions.WEAPON_ATTR_SAINT, "Property: Holy");
+        enc.put(ItemOptions.WEAPON_ATTR_DARKNESS, "Property: Shadow");
+        enc.put(ItemOptions.WEAPON_ATTR_TELEKINESIS, "Property: Ghost");
+        enc.put(ItemOptions.WEAPON_ATTR_UNDEAD, "Property: Undead");
 
         enchants = enc;
     }
 
-    public static String getEnchant(long property) {
-        if (enchants.containsKey(property)) {
+    public static String getEnchant(ItemOptions property) {
+
+        if (property == ItemOptions.UNKNOWN) {
+            return "("+ property +") "+ enchants.get(property);
+        } else {
             return enchants.get(property);
         }
-        return "("+ property +") Unknown %d";
+
     }
 }

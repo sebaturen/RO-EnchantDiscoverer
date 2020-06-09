@@ -1,10 +1,9 @@
 package com.ro.models;
 
+import com.ro.enums.ItemOptions;
+
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Item {
 
@@ -21,7 +20,7 @@ public class Item {
     public void addProperties(long valType, long val) {
         if (valType > 0 && val > 0) {
             this.properties.add(
-                String.format(ItemEnchantProperty.getEnchant(valType), val)
+                String.format(ItemEnchantProperty.getEnchant(ItemOptions.valueOf((int) valType)), val)
             );
         }
 
